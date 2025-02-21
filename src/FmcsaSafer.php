@@ -108,7 +108,7 @@ class FmcsaSafer
             ->getWithKey('carriers/' . $dotNumber . '/authority');
     }
 
-    protected function getWithKey(string $path, array $params = [])
+    protected function getWithKey(string $path, array $params = []) : ?array
     {
         $client = new \GuzzleHttp\Client();
         $result = $client->request('GET', $this->baseUrl . $path, [
@@ -120,7 +120,7 @@ class FmcsaSafer
         
         $resultJson = json_decode($result->getBody()->getContents(), true);
 
-        if ($result->getStatusCode() === 404 || empty($resultJson['content'])) {
+        if ($result->getStatusCode() === 404 || $resultJson['content'] === null) {
             throw new FmcsaNotFoundError('Carrier not found');
         }
 

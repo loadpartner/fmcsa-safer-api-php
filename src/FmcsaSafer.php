@@ -61,9 +61,8 @@ class FmcsaSafer
 
     protected function searchCarrierMC($mcNumber)
     {
-        throw new \Exception('Not implemented');
-        // return $this
-        //     ->getWithKey('carriers/docket-number/' . $mcNumber);
+        return $this
+            ->getWithKey('carriers/docket-number/' . $mcNumber);
     }
 
     protected function getCarrierMC($dotNumber)
